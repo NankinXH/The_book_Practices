@@ -1,0 +1,5 @@
+debug/
+data/
+dist/
+target/
+**/*/target/
