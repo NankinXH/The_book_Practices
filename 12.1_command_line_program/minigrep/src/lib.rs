@@ -13,10 +13,10 @@ impl Config {
         args.next();
 
         let query = match args.next() {
-            Some(arg)=>arg,
+            Some(arg) => arg,
             None => return Err("Didn't get a query string"),
         };
-        let file_path =match args.next() {
+        let file_path = match args.next() {
             Some(arg) => arg,
             None => return Err("Didn't get a file path string"),
         };
@@ -47,11 +47,17 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search_case_sensitive<'a>(query: &'a str, content: &'a str) -> Vec<&'a str> {
-    content.lines().filter(|line| line.contains(query)).collect()
+    content
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &'a str, content: &'a str) -> Vec<&'a str> {
-    content.lines().filter(|line|line.to_lowercase().contains(query)).collect()
+    content
+        .lines()
+        .filter(|line| line.to_lowercase().contains(query))
+        .collect()
 }
 
 #[cfg(test)]
